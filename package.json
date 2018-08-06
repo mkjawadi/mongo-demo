@@ -1,0 +1,22 @@
+{
+  "name": "mongo-demo",
+  "version": "1.0.0",
+  "description": "A demo of CRUD operations using MongoDB.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkjawadi/mongo-demo.git"
+  },
+  "author": "Kumail Jawadi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mkjawadi/mongo-demo/issues"
+  },
+  "homepage": "https://github.com/mkjawadi/mongo-demo#readme",
+  "dependencies": {
+    "mongoose": "^5.2.6"
+  }
+}
