@@ -13,8 +13,9 @@ const courseSchema = new mongoose.Schema({
   price: Number
 });
 
+const Course = mongoose.model('Course', courseSchema);
+
 async function createCourse() {
-  const Course = mongoose.model('Course', courseSchema);
   const course= new Course({
     name: 'Angular Course',
     author: 'Kumail Jawadi',
@@ -26,15 +27,31 @@ const result = await course.save();
 console.log(result);
 }
 
-createCourse();
-// async function getCourses() {
-//   return await Course
-//   .find({ isPublished: true, tags: 'backend' })
-//   .sort({ name: 1 })
-//   .select({ name: 1, author: 1 });
-// }
+// createCourse();
 
-// async function run() {
-//   const courses = await getCourses();
-//   console.log(courses);
-// }
+async function getCourses() {
+  const pageNumber = 2;
+  const pageSize = 10;
+
+  const courses = await Course
+  .find({ isPublished: true, tags: 'backend' })
+  // .find({price: {$gte: 10, $lte: 20}}) //  10<=price<=20
+  // . find({price: {$in: [10, 15, 20]}})
+
+  // Logical Expressions
+  // .find().or([{author: 'Kumail'}, {isPublished: true}])
+
+  // Regular Expressions
+  // .find({author: /^Kumail/})  // Starts with Kumail
+  // .find({author: /Kumail$/i})  // Ends with Kumail (is not case sensitive)
+  // .find({author: /.*Kumail.*$/i}) // Contains Kumail (is not case sensitive)
+
+  // Pagination
+  // .skip((pageNumber - 1) * pageSize).limit(pageSize)
+
+  .sort({ name: 1 })
+  .select({ name: 1, author: 1 });
+  console.log(courses);
+}
+
+getCourses();
