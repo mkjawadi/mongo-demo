@@ -54,4 +54,25 @@ async function getCourses() {
   console.log(courses);
 }
 
-getCourses();
+// Update using Query-First approach
+async function updateCourse(id){
+  const course = await Course.findById(id);
+  if(!course) return;
+  course.set({
+    author: 'Reza',
+    isPublished: false
+  });
+  const result =  await course.save();
+  console.log(result);
+}
+
+// Update using Update-First approach
+// async function updateCourse(id){
+//   const result = await Course.findByIdAndUpdate({ _id: id }, {
+//   $set: { author: 'Kumail Jawadi' }
+//   }, { new: true });
+//   console.log(result);
+// }
+
+// getCourses();
+updateCourse('5b67ea3f7944e92db0e2b565');
